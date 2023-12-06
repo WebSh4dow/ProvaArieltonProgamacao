@@ -1,7 +1,9 @@
 package com.prova.agenda.service;
 
 import com.prova.agenda.repository.JdbcRepository;
+
 import java.sql.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,7 +23,7 @@ public class JdbcService implements JdbcRepository {
     public void abrirConexao() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conexaoJDBC = DriverManager.getConnection(URL_CONEXAO,USUARIO,SENHA);
+            conexaoJDBC = DriverManager.getConnection(URL_CONEXAO, USUARIO, SENHA);
             logger.info("[Loggando no metodo de abrir conexão realizada com sucesso]");
         } catch (SQLException e) {
             logger.error("[Loggando no metodo de abrir conexão erro ao abrir conexão]: ", e);
@@ -34,8 +36,7 @@ public class JdbcService implements JdbcRepository {
     public void fecharConexao() {
         try {
             conexaoJDBC.close();
-        }
-        catch(SQLException e) {
+        } catch (SQLException e) {
             logger.error("[Loggando no metodo de abrir conexão erro ao abrir conexão]: ", e);
 
         }

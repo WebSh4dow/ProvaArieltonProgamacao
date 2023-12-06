@@ -1,31 +1,42 @@
 package com.prova.agenda;
 
-import com.prova.agenda.repository.JdbcRepository;
 import com.prova.agenda.service.ContatoService;
-import com.prova.agenda.service.JdbcService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
-import java.sql.SQLException;
+import java.net.URL;
 
 public class HelloApplication extends Application {
+
+    private static Stage principal;
+
+    public static void setPrincipal(Stage stage) {
+        principal = stage;
+    }
+
+    public static Stage getPrincipal() {
+        return principal;
+    }
+
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        stage.initStyle(StageStyle.UNDECORATED);
+        stage.setTitle("Agenda Telefônica");
+        stage.setResizable(false);
+        setPrincipal(stage);
+
+        Parent root = FXMLLoader.load(getClass().getResource("/principal.fxml"));
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
     public static void main(String[] args) {
-        JdbcService jdbcService = new JdbcService();
-        jdbcService.criarDatabaseAgenda();
-        jdbcService.criarTabelaContato();
-
-        launch();
+        launch(args);
     }
 }

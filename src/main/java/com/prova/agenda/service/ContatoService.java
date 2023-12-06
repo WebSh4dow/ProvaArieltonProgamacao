@@ -13,13 +13,14 @@ import java.util.List;
 
 public class ContatoService implements ContatoRepository {
 
-    private static JdbcService jdbcService;
+    private JdbcService jdbcService;
 
     private static final Logger logger = LoggerFactory.getLogger(JdbcService.class);
 
     public ContatoService(JdbcService jdbcService) {
-        ContatoService.jdbcService = jdbcService;
+        this.jdbcService = jdbcService;
     }
+
     @Override
     public boolean adicionarContato(Contato contato) {
         boolean contatoAdicionado = false;
@@ -40,10 +41,11 @@ public class ContatoService implements ContatoRepository {
         jdbcService.fecharConexao();
         return contatoAdicionado;
     }
+
     @Override
     public List<Contato> obterListaContatosPelaConsulta(ResultSet resultado) throws SQLException {
         List<Contato> contatos = new ArrayList<>();
-        while(resultado.next()) {
+        while (resultado.next()) {
             int id = resultado.getInt("id");
             String nome = resultado.getString("nome");
             String telefone = resultado.getString("telefone");
@@ -53,6 +55,7 @@ public class ContatoService implements ContatoRepository {
         }
         return contatos;
     }
+
     @Override
     public List<Contato> consutarTodosContatos() {
         List<Contato> contatos = null;
@@ -67,12 +70,13 @@ public class ContatoService implements ContatoRepository {
         jdbcService.fecharConexao();
         return contatos;
     }
+
     @Override
     public List<Contato> consutarContatosFiltrados(String nome) {
         List<Contato> contatos = null;
         jdbcService.abrirConexao();
         try {
-            String sql = "SELECT * FROM contato WHERE nome LIKE '%"+nome+"%';";
+            String sql = "SELECT * FROM contato WHERE nome LIKE '%" + nome + "%';";
             PreparedStatement declaracao = jdbcService.getConexaoJDBC().prepareStatement(sql);
             contatos = obterListaContatosPelaConsulta(declaracao.executeQuery());
         } catch (SQLException e) {
@@ -81,6 +85,7 @@ public class ContatoService implements ContatoRepository {
         jdbcService.fecharConexao();
         return contatos;
     }
+
     @Override
     public boolean editarContato(Contato contato) {
         boolean atualizado = false;
@@ -101,6 +106,7 @@ public class ContatoService implements ContatoRepository {
         jdbcService.fecharConexao();
         return atualizado;
     }
+
     @Override
     public boolean deletarContato(int id) {
         boolean removido = false;
@@ -117,8 +123,6 @@ public class ContatoService implements ContatoRepository {
         jdbcService.fecharConexao();
         return removido;
     }
-
-
 
 
 }
