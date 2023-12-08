@@ -11,18 +11,6 @@ Este é um sistema de agenda de contatos desenvolvido em JavaFX, utilizando MySQ
 - MySQL
 - Conexão com a internet para configurar o banco de dados
 
-## Configuração do Banco de Dados
-
-1. Crie um banco de dados MySQL chamado `agenda_contatos`.
-2. Execute o script SQL fornecido em `script_banco.sql` para criar a tabela `contatos`.
-3. Configure as informações de conexão com o banco de dados no arquivo `src/main/resources/config.properties`.
-
-## Execução do Sistema
-
-1. Abra o projeto em sua IDE favorita.
-2. Certifique-se de que as dependências estão configuradas corretamente.
-3. Execute a classe `MainApp.java` para iniciar o aplicativo.
-
 ## Funcionalidades
 
 ### Incluir Contato
