@@ -20,6 +20,7 @@ Este é um sistema de agenda de contatos desenvolvido em JavaFX, utilizando MySQ
 - [ ] Preencha os campos obrigatórios.
 - [ ] Clique no botão "Salvar".
 
+
 ### Editar Contato
 
 - [ ] Selecione um contato na lista com o botão direito do mouse.
